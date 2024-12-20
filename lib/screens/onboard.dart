@@ -1,8 +1,10 @@
+import 'package:ecommerce_store/screens/login.dart';
+import 'package:ecommerce_store/utils/common_functions.dart';
 import 'package:ecommerce_store/utils/constants.dart';
 import 'package:ecommerce_store/utils/custom_widgets/animated_circle_indicator.dart';
 import 'package:ecommerce_store/utils/custom_widgets/svg_image.dart';
 import 'package:flutter/material.dart';
-import '../utils/custom_widgets/custom_elevated_button.dart';
+import '../utils/custom_widgets/custom_buttons.dart';
 
 PageController pageController = PageController();
 
@@ -67,52 +69,58 @@ class OnboardScreenWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Expanded(
-            child: SvgAssetImage(assetName: svgAssetName)
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          spacing: 10,
-          children: [
-            Text(secondaryTitle, style: Theme.of(context).textTheme.bodyMedium,),
-            Text(primaryTitle, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: secondaryDarkBrown),),
-            descText != null ? Text(descText!, style: Theme.of(context).textTheme.labelMedium,) : const SizedBox(),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                AnimatedCircleIndicator(length: 3, currentIndex: currentIndex),
-                Row(
-                  spacing: 15,
-                  children: [
-                    if(currentIndex > 0) ElevatedButton(
-                      onPressed: () {
-                        pageController.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInQuint);
-                      },
-                      child: Row(
-                        spacing: 5,
-                        children: [
-                          const Icon(Icons.arrow_back_ios_new_rounded, size: 17, color: primaryWhite,),
-                          Text('Back', style:  Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600, color: primaryWhite),)
-                        ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Expanded(
+              child: SvgAssetImage(assetName: svgAssetName)
+          ),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            spacing: 10,
+            children: [
+              Text(secondaryTitle, style: Theme.of(context).textTheme.bodyMedium,),
+              Text(primaryTitle, style: Theme.of(context).textTheme.titleSmall?.copyWith(color: secondaryDarkBrown),),
+              descText != null ? Text(descText!, style: Theme.of(context).textTheme.labelMedium,) : const SizedBox(),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  AnimatedCircleIndicator(length: 3, currentIndex: currentIndex),
+                  Row(
+                    spacing: 15,
+                    children: [
+                      if(currentIndex > 0) ElevatedButton(
+                        onPressed: () {
+                          pageController.previousPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInQuint);
+                        },
+                        child: Row(
+                          spacing: 5,
+                          children: [
+                            const Icon(Icons.arrow_back_ios_new_rounded, size: 17, color: primaryWhite,),
+                            Text('Back', style:  Theme.of(context).textTheme.labelMedium?.copyWith(fontWeight: FontWeight.w600, color: primaryWhite),)
+                          ],
+                        ),
                       ),
-                    ),
-                    CustomElevatedButton(onBtnPress: () {
-                      if(currentIndex < 2) {
-                        pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInQuint);
-                      } else {
-                        //TODO: Proceed to auth screen
-                      }
-                    }, btnText: btnText, btnIcon: Icons.arrow_forward_ios_rounded,),
-                  ],
-                ),
-              ],
-            )
-          ],
-        )
-      ],
+                      CustomElevatedButton(
+                        onBtnPress: () async {
+                          if(currentIndex < 2) {
+                            pageController.nextPage(duration: const Duration(milliseconds: 400), curve: Curves.easeInQuint);
+                          } else {
+                            //TODO: Proceed to auth screen
+                            await CommonFunctions().writeValueToStrg('isFirstTime', true.toString());
+                            Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Login()));
+                          }
+                      }, btnText: btnText, btnIcon: Icons.arrow_forward_ios_rounded,),
+                    ],
+                  ),
+                ],
+              )
+            ],
+          )
+        ],
+      ),
     );
   }
 }

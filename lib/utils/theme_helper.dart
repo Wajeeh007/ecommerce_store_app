@@ -20,7 +20,7 @@ class ThemeHelper {
         color: primaryDarkBrown
     ),
     iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(
-        foregroundColor: primaryWhite, iconSize: 20)),
+        foregroundColor: primaryCreamWhite, iconSize: 20)),
     iconTheme: const IconThemeData(color: primaryWhite, size: 20,),
     appBarTheme: const AppBarTheme(
         centerTitle: true,

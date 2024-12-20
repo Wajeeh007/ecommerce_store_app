@@ -1,7 +1,8 @@
 import 'package:ecommerce_store/bloc_and_cubit/base/base_bloc.dart';
 import 'package:ecommerce_store/bloc_and_cubit/base/base_event.dart';
 import 'package:ecommerce_store/bloc_and_cubit/base/base_state.dart';
-import 'package:ecommerce_store/bloc_and_cubit/onboard/onboard_cubit.dart';
+import 'package:ecommerce_store/bloc_and_cubit/login/login_bloc.dart';
+import 'package:ecommerce_store/screens/login.dart';
 import 'package:ecommerce_store/screens/onboard.dart';
 import 'package:ecommerce_store/utils/constants.dart';
 import 'package:ecommerce_store/utils/custom_widgets/no_internet.dart';
@@ -37,13 +38,10 @@ class _BaseScreenState extends State<BaseScreen> {
               if(state.isUsingFirstTime) {
                 Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const Onboard()));
               } else {
-                Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => BlocProvider(
-                          create: (_) => OnboardCubit(),
-                          child: const Onboard(),
-                        ))
+                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => BlocProvider(
+                  create: (context) => LoginBloc(),
+                  child: const Login(),
+                ))
                 );
               }
             }

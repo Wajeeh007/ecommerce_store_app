@@ -6,6 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 void main() {
+
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       statusBarColor: Colors.transparent,
@@ -33,6 +34,6 @@ class MyApp extends StatelessWidget {
       darkTheme: ThemeHelper.lightTheme,
       home: const BaseScreen(),
     ),
-);
+    );
   }
 }
