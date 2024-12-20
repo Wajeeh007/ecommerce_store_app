@@ -8,12 +8,13 @@ import 'base_state.dart';
 class BaseBloc extends Bloc<BaseEvent, BaseState> {
 
   BaseBloc() : super(const BaseState()) {
-    on<InitEvent>(initializeBaseEvent);
+    on<InitEvent>(_initializeBaseEvent);
   }
 
-  void initializeBaseEvent(InitEvent event, Emitter<BaseState> emit) async {
+  void _initializeBaseEvent(InitEvent event, Emitter<BaseState> emit) async {
 
     final result = await CommonFunctions().hasInternet();
-    emit(state.copyWith(internetCheckState: LoadingState.complete, internetAvailable: result));
+    final isFirstTime = await CommonFunctions().readValueFromStrg('isFirstTime');
+    return emit(state.copyWith(internetCheckState: LoadingState.complete, internetAvailable: result, isUsingFirstTime: isFirstTime ?? false));
   }
 }

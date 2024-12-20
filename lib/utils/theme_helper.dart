@@ -7,6 +7,11 @@ class ThemeHelper {
   static ThemeData lightTheme = ThemeData(
     useMaterial3: true
   ).copyWith(
+    elevatedButtonTheme: const ElevatedButtonThemeData(
+      style: ButtonStyle(
+        backgroundColor: WidgetStatePropertyAll<Color>(primaryLightBrown),
+      )
+    ),
     textTheme: TextThemes.textTheme(color: primaryBlack),
     bottomAppBarTheme: const BottomAppBarTheme(
         shadowColor: primaryLightBrown,
@@ -15,12 +20,12 @@ class ThemeHelper {
         color: primaryDarkBrown
     ),
     iconButtonTheme: IconButtonThemeData(style: IconButton.styleFrom(
-        foregroundColor: backgroundWhite, iconSize: 20)),
-    iconTheme: const IconThemeData(color: backgroundWhite, size: 20,),
+        foregroundColor: primaryWhite, iconSize: 20)),
+    iconTheme: const IconThemeData(color: primaryWhite, size: 20,),
     appBarTheme: const AppBarTheme(
         centerTitle: true,
-        backgroundColor: backgroundWhite,
-        surfaceTintColor: backgroundWhite,
+        backgroundColor: primaryWhite,
+        surfaceTintColor: primaryWhite,
         scrolledUnderElevation: 0.0,
         systemOverlayStyle: SystemUiOverlayStyle(
             statusBarColor: Colors.transparent,
@@ -34,11 +39,11 @@ class ThemeHelper {
       color: primaryDarkBrown,
     ),
     brightness: Brightness.light,
-    scaffoldBackgroundColor: backgroundWhite,
+    scaffoldBackgroundColor: primaryWhite,
     colorScheme: ColorScheme.fromSeed(
-      seedColor: backgroundWhite,
-      primaryContainer: secondaryWhite,
-      onPrimaryFixedVariant: primaryWhite,
+      seedColor: primaryWhite,
+      primaryContainer: secondaryCreamWhite,
+      onPrimaryFixedVariant: primaryCreamWhite,
       primary: primaryDarkBrown, /// Primary is used as the variant of yellow used in this theme
       secondary: secondaryDarkBrown, /// Secondary is the second most used color. This is used as border color, description text color and shadow color
       tertiaryContainer: primaryLightBrown,

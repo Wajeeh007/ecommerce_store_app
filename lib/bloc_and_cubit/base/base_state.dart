@@ -19,12 +19,12 @@ class BaseState extends Equatable {
     bool? isUsingFirstTime,
   }) {
     return BaseState(
-        internetCheckState: this.internetCheckState,
-        internetAvailable: this.internetAvailable,
-        isUsingFirstTime: this.isUsingFirstTime
+        internetCheckState: internetCheckState ?? this.internetCheckState,
+        internetAvailable: internetAvailable ?? this.internetAvailable,
+        isUsingFirstTime: isUsingFirstTime ?? this.isUsingFirstTime
     );
   }
 
   @override
-  List<Object?> get props => [internetCheckState, internetAvailable];
+  List<Object?> get props => [internetCheckState, internetAvailable, isUsingFirstTime];
 }

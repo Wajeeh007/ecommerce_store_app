@@ -20,6 +20,7 @@ dependencies:
   equatable: ^2.0.7
   connectivity_plus: ^6.1.1
   flutter_secure_storage: ^9.2.2
+  flutter_svg: ^2.0.16
 
 dev_dependencies:
   flutter_test:
@@ -33,7 +34,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
-  #   - images/a_dot_burr.jpeg
+     - assets/svg_vectors/
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

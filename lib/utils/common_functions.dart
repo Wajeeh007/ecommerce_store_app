@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'dart:io';
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 class CommonFunctions {
@@ -10,7 +9,9 @@ class CommonFunctions {
 
   Future<bool> hasInternet () async {
     try {
-      final result = await InternetAddress.lookup('example.com');
+      final result = await InternetAddress.lookup('google.com').timeout(
+          const Duration(seconds: 15)
+      );
       return result.isNotEmpty && result[0].rawAddress.isNotEmpty;
     } on SocketException catch (_) {
       return false;
